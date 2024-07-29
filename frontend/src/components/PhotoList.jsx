@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
-const PhotoList = ({ photos, favoritePhotoIds, onToggleFavorite }) => {
+const PhotoList = ({ photos, favoritePhotoIds, onToggleFavorite, onPhotoClick }) => {
   return (
     <div className="photo-list">
       {photos.map(photo => (
@@ -12,6 +12,7 @@ const PhotoList = ({ photos, favoritePhotoIds, onToggleFavorite }) => {
           photo={photo} 
           isFavorited={favoritePhotoIds.includes(photo.id)}
           onToggleFavorite={onToggleFavorite} 
+          onPhotoClick={onPhotoClick}
         />
       ))}
     </div>
@@ -38,12 +39,10 @@ PhotoList.propTypes = {
   })).isRequired,
   favoritePhotoIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
+  onPhotoClick: PropTypes.func.isRequired,
 };
 
 export default PhotoList;
-
-
-
 // const sampleDataForPhotoList = [
 //   {
 //     id: "1",

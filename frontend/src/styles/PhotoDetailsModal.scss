@@ -1,24 +1,40 @@
 .photo-details-modal {
+  display: none;
   background-color: white;
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
-  position: absolute;
-  top: 55%;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -50%);
   height: 80%;
   width: 55%;
   overflow-y: scroll;
   border-radius: 12px;
+  z-index: 1000;
+}
+
+.photo-details-modal--open {
+  display: block; /* Display the modal when this class is added */
+}
+
+.photo-details-modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .photo-details-modal__close-button {
   background-color: white;
   border: none;
-  color: white;
+  color: black;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 24px;
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
@@ -60,6 +76,7 @@
 .photo-details-modal__photographer-location {
   color: #838383;
 }
+
 .photo-details-modal__photographer-profile {
   object-fit: cover;
   border-radius: 100%;

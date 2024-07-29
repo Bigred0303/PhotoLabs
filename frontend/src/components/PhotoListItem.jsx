@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'styles/PhotoListItem.scss';
+import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
-const PhotoListItem = ({ photo, isFavorited, onToggleFavorite }) => {
+const PhotoListItem = ({ photo, isFavorited, onToggleFavorite, onPhotoClick }) => {
   const { id, location, urls, user } = photo;
+  
+  const handleClick = () => {
+    console.log("Photo clicked:", photo); // Debugging log
+    onPhotoClick(photo);
+  };
+
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handleClick}>
       <img src={urls.regular} alt={`Photo by ${user.username}`} className="photo-list__image"/>
       <div className="photo-list__user-details">
         <img src={user.profile} alt={`${user.username}'s profile`} className="photo-list__user-profile"/>
@@ -43,6 +49,7 @@ PhotoListItem.propTypes = {
   }).isRequired,
   isFavorited: PropTypes.bool.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
+  onPhotoClick: PropTypes.func.isRequired,
 };
 
 export default PhotoListItem;
