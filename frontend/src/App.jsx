@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PhotoListItem from './components/PhotoListItem';
+import PhotoList from './components/PhotoList';
 import './App.scss';
 
 const initialPhotos = [
@@ -9,9 +9,16 @@ const initialPhotos = [
       city: "Montreal",
       country: "Canada",
     },
-    profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-    imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-    username: "Joe Example",
+    urls: {
+      full: `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
+      regular: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
+    },
+    user: {
+      id: "1",
+      username: "exampleuser",
+      name: "Joe Example",
+      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    },
     isFavorited: false,
   },
   {
@@ -20,20 +27,34 @@ const initialPhotos = [
       city: "Toronto",
       country: "Canada",
     },
-    profile: `${process.env.PUBLIC_URL}/profile-2.jpg`,
-    imageSource: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
-    username: "Jane Doe",
+    urls: {
+      full: `${process.env.PUBLIC_URL}/Image-2-Full.jpeg`,
+      regular: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
+    },
+    user: {
+      id: "2",
+      username: "exampleuser",
+      name: "Joe Example",
+      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    },
     isFavorited: false,
   },
   {
     id: "3",
     location: {
-      city: "Vancouver",
+      city: "Ottawa",
       country: "Canada",
     },
-    profile: `${process.env.PUBLIC_URL}/profile-3.jpg`,
-    imageSource: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
-    username: "John Smith",
+    urls: {
+      full: `${process.env.PUBLIC_URL}/Image-3-Full.jpeg`,
+      regular: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
+    },
+    user: {
+      id: "3",
+      username: "exampleuser",
+      name: "Joe Example",
+      profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
+    },
     isFavorited: false,
   },
 ];
@@ -49,13 +70,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {photos.map(photo => (
-        <PhotoListItem 
-          key={photo.id} 
-          photo={photo}
-          onToggleFavorite={toggleFavorite}
-        />
-      ))}
+      <PhotoList photos={photos} onToggleFavorite={toggleFavorite} />
     </div>
   );
 };

@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import 'styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
 const PhotoListItem = ({ photo, onToggleFavorite }) => {
-  const { id, location, imageSource, username, profile, isFavorited } = photo;
-
+  const { id, location, urls, user, isFavorited } = photo;
   return (
     <div className="photo-list__item">
-      <img src={imageSource} alt={`Photo by ${username}`} className="photo-list__image"/>
+      <img src={urls.regular} alt={`Photo by ${user.username}`} className="photo-list__image"/>
       <div className="photo-list__user-details">
-        <img src={profile} alt={`${username}'s profile`} className="photo-list__user-profile"/>
+        <img src={user.profile} alt={`${user.username}'s profile`} className="photo-list__user-profile"/>
         <div className="photo-list__user-info">
-          <div>{username}</div>
+          <div>{user.name}</div>
           <div className="photo-list__user-location">{location.city}, {location.country}</div>
         </div>
       </div>
@@ -31,9 +30,16 @@ PhotoListItem.propTypes = {
       city: PropTypes.string.isRequired,
       country: PropTypes.string.isRequired,
     }).isRequired,
-    imageSource: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    profile: PropTypes.string.isRequired,
+    urls: PropTypes.shape({
+      full: PropTypes.string.isRequired,
+      regular: PropTypes.string.isRequired,
+    }).isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      profile: PropTypes.string.isRequired,
+    }).isRequired,
     isFavorited: PropTypes.bool.isRequired,
   }).isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
