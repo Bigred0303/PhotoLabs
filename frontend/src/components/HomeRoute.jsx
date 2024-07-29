@@ -1,28 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TopNavigationBar from './TopNavigationBar';
 import PhotoList from './PhotoList';
 import '../styles/HomeRoute.scss';
-import photos from '../mocks/photos';
-import topics from '../mocks/topics';
 
-const HomeRoute = () => {
-  const [photoList, setPhotoList] = useState(photos);
-  const [topicList] = useState(topics);
-
-  const toggleFavorite = (id) => {
-    setPhotoList(photoList.map(photo => 
-      photo.id === id ? { ...photo, isFavorited: !photo.isFavorited } : photo
-    ));
-  };
-
-  const totalLikedPhotos = photoList.filter(photo => photo.isFavorited).length;
+const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
+  const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topicList} totalLikedPhotos={totalLikedPhotos} />
-      <PhotoList photos={photoList} onToggleFavorite={toggleFavorite} />
+      <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
+      <PhotoList photos={photos} onToggleFavorite={onToggleFavorite} />
     </div>
   );
+};
+
+HomeRoute.propTypes = {
+  topics: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  photos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      city: PropTypes.string.isRequired,
+      country: PropTypes.string.isRequired,
+    }).isRequired,
+    urls: PropTypes.shape({
+      full: PropTypes.string.isRequired,
+      regular: PropTypes.string.isRequired,
+    }).isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      profile: PropTypes.string.isRequired,
+    }).isRequired,
+    isFavorited: PropTypes.bool.isRequired,
+  })).isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 export default HomeRoute;
