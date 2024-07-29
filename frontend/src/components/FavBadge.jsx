@@ -12,11 +12,7 @@ const FavBadge = ({ totalLikedPhotos }) => {
 };
 
 FavBadge.propTypes = {
-  totalLikedPhotos: PropTypes.number,
-};
-
-FavBadge.defaultProps = {
-  totalLikedPhotos: 0,
+  totalLikedPhotos: PropTypes.number.isRequired,
 };
 
 export default FavBadge;
