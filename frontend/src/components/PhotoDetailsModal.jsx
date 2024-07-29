@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import '../styles/PhotoDetailsModal.scss';
 
 const PhotoDetailsModal = ({ isOpen, onClose, photo }) => {
+  console.log('Modal isOpen:', isOpen);
+  console.log('Selected photo:', photo);
+
   return (
     <div className={`photo-details-modal ${isOpen ? 'photo-details-modal--open' : ''}`}>
       <div className="photo-details-modal__overlay" onClick={onClose}></div>

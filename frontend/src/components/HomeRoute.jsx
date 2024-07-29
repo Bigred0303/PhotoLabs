@@ -6,12 +6,32 @@ import PhotoDetailsModal from '../routes/PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = ({ topics, photos, setDisplayModal, onToggleFavorite }) => {
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  const handleSetDisplayModal = (photo) => {
+    console.log("Opening modal for photo:", photo);
+    setSelectedPhoto(photo);
+  };
+
+  const handleCloseModal = () => {
+    console.log("Closing modal");
+    setSelectedPhoto(null);
+  };
+
+  const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
+
   return (
     <div className="home-route">
+      <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
       <PhotoList 
         photos={photos} 
-        setDisplayModal={setDisplayModal} 
+        setDisplayModal={handleSetDisplayModal} 
         onToggleFavorite={onToggleFavorite}
+      />
+      <PhotoDetailsModal 
+        isOpen={selectedPhoto !== null} 
+        onClose={handleCloseModal} 
+        photo={selectedPhoto} 
       />
     </div>
   );
@@ -41,6 +61,7 @@ HomeRoute.propTypes = {
     }).isRequired,
     isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
+  setDisplayModal: PropTypes.func.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
 };
 

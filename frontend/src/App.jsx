@@ -8,18 +8,15 @@ import topics from './mocks/topics';
 const App = () => {
   const [photos, setPhotos] = useState(photosData);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [displayModal, setDisplayModal] = useState(false);
 
-  const handleSetDisplayModal = (photo) => {
+  const setDisplayModal = (photo) => {
     console.log("Opening modal for photo:", photo);
     setSelectedPhoto(photo);
-    setDisplayModal(true);
   };
 
   const closeModal = () => {
     console.log("Closing modal");
     setSelectedPhoto(null);
-    setDisplayModal(false);
   };
 
   const toggleFavorite = (photoId) => {
@@ -33,16 +30,14 @@ const App = () => {
       <HomeRoute 
         topics={topics} 
         photos={photos} 
-        setDisplayModal={handleSetDisplayModal} 
+        setDisplayModal={setDisplayModal} 
         onToggleFavorite={toggleFavorite}
       />
-      {displayModal && (
-        <PhotoDetailsModal 
-          isOpen={selectedPhoto !== null} 
-          onClose={closeModal} 
-          photo={selectedPhoto} 
-        />
-      )}
+      <PhotoDetailsModal 
+        isOpen={selectedPhoto !== null} 
+        onClose={closeModal} 
+        photo={selectedPhoto} 
+      />
     </div>
   );
 };
