@@ -1,26 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TopNavigationBar from './TopNavigationBar';
 import PhotoList from './PhotoList';
 import '../styles/HomeRoute.scss';
 
-class HomeRoute extends Component {
-  render() {
-    const { topics, photos, setDisplayModal, onToggleFavorite } = this.props;
-    const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
+const HomeRoute = ({ topics, photos, setDisplayModal, onToggleFavorite }) => {
+  const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
 
-    return (
-      <div className="home-route">
-        <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
-        <PhotoList 
-          photos={photos} 
-          setDisplayModal={setDisplayModal} 
-          onToggleFavorite={onToggleFavorite}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="home-route">
+      <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
+      <PhotoList 
+        photos={photos} 
+        setDisplayModal={setDisplayModal} 
+        onToggleFavorite={onToggleFavorite}
+      />
+    </div>
+  );
+};
 
 HomeRoute.propTypes = {
   topics: PropTypes.arrayOf(PropTypes.shape({

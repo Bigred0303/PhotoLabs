@@ -10,10 +10,12 @@ const App = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const setDisplayModal = (photo) => {
+    console.log("Opening modal for photo:", photo);
     setSelectedPhoto(photo);
   };
 
   const closeModal = () => {
+    console.log("Closing modal");
     setSelectedPhoto(null);
   };
 
