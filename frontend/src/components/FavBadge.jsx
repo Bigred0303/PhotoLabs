@@ -1,14 +1,22 @@
 import React from 'react';
-import FavIcon from './FavIcon';
-
+import PropTypes from 'prop-types';
 import '../styles/FavBadge.scss';
 
-const FavBadge = ({ isFavPhotoExist }) => {
+const FavBadge = ({ totalLikedPhotos }) => {
   return (
-    <div className='fav-badge'>
-      <FavIcon displayAlert={!!isFavPhotoExist}/>
+    <div className="fav-badge">
+      <span className="fav-badge__count">{totalLikedPhotos}</span>
+      <span className="fav-badge__icon">❤️</span>
     </div>
-  ) 
+  );
+};
+
+FavBadge.propTypes = {
+  totalLikedPhotos: PropTypes.number,
+};
+
+FavBadge.defaultProps = {
+  totalLikedPhotos: 0,
 };
 
 export default FavBadge;

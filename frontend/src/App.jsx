@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PhotoList from './components/PhotoList';
-import TopicList from './components/TopicList';
+import TopNavigationBar from './components/TopNavigationBar';
 import './App.scss';
 
 const initialPhotos = [
@@ -78,10 +78,9 @@ const initialTopics = [
   },
 ];
 
-
 const App = () => {
   const [photos, setPhotos] = useState(initialPhotos);
-  const [topics, setTopics] = useState(initialTopics);
+  const [topics] = useState(initialTopics);
 
   const toggleFavorite = (id) => {
     setPhotos(photos.map(photo => 
@@ -89,9 +88,11 @@ const App = () => {
     ));
   };
 
+  const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
+
   return (
     <div className="App">
-      <TopicList topics={topics} />
+      <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
       <PhotoList photos={photos} onToggleFavorite={toggleFavorite} />
     </div>
   );
