@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PhotoListItem from './PhotoListItem';
-import "../styles/PhotoList.scss";
+import '../styles/PhotoList.scss';
 
-const PhotoList = ({ photos, onToggleFavorite }) => {
+const PhotoList = ({ photos, favoritePhotoIds, onToggleFavorite }) => {
   return (
     <div className="photo-list">
       {photos.map(photo => (
         <PhotoListItem 
           key={photo.id} 
-          photo={photo}
-          onToggleFavorite={onToggleFavorite}
+          photo={photo} 
+          isFavorited={favoritePhotoIds.includes(photo.id)}
+          onToggleFavorite={onToggleFavorite} 
         />
       ))}
     </div>
@@ -34,8 +35,8 @@ PhotoList.propTypes = {
       name: PropTypes.string.isRequired,
       profile: PropTypes.string.isRequired,
     }).isRequired,
-    isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
+  favoritePhotoIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
 };
 

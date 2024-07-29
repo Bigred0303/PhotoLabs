@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import 'styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
-const PhotoListItem = ({ photo, onToggleFavorite }) => {
-  const { id, location, urls, user, isFavorited } = photo;
+const PhotoListItem = ({ photo, isFavorited, onToggleFavorite }) => {
+  const { id, location, urls, user } = photo;
   return (
     <div className="photo-list__item">
       <img src={urls.regular} alt={`Photo by ${user.username}`} className="photo-list__image"/>
@@ -16,7 +16,7 @@ const PhotoListItem = ({ photo, onToggleFavorite }) => {
         </div>
       </div>
       <PhotoFavButton 
-        isInitiallyFavorited={isFavorited}
+        isFavorited={isFavorited}
         onToggleFavorite={() => onToggleFavorite(id)}
       />
     </div>
@@ -40,8 +40,8 @@ PhotoListItem.propTypes = {
       name: PropTypes.string.isRequired,
       profile: PropTypes.string.isRequired,
     }).isRequired,
-    isFavorited: PropTypes.bool.isRequired,
   }).isRequired,
+  isFavorited: PropTypes.bool.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
 };
 

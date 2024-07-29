@@ -5,20 +5,22 @@ import PhotoList from './PhotoList';
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = ({ topics, photos }) => {
-  const [photoList, setPhotoList] = useState(photos);
+  const [favoritePhotoIds, setFavoritePhotoIds] = useState([]);
 
-  const toggleFavorite = (id) => {
-    setPhotoList(photoList.map(photo => 
-      photo.id === id ? { ...photo, isFavorited: !photo.isFavorited } : photo
-    ));
+  const onToggleFavorite = (id) => {
+    setFavoritePhotoIds((prevFavoritePhotoIds) =>
+      prevFavoritePhotoIds.includes(id)
+        ? prevFavoritePhotoIds.filter(photoId => photoId !== id)
+        : [...prevFavoritePhotoIds, id]
+    );
   };
 
-  const totalLikedPhotos = photoList.filter(photo => photo.isFavorited).length;
+  const totalLikedPhotos = favoritePhotoIds.length;
 
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
-      <PhotoList photos={photoList} onToggleFavorite={toggleFavorite} />
+      <PhotoList photos={photos} favoritePhotoIds={favoritePhotoIds} onToggleFavorite={onToggleFavorite} />
     </div>
   );
 };
@@ -47,7 +49,6 @@ HomeRoute.propTypes = {
     }).isRequired,
     isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
-  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 export default HomeRoute;

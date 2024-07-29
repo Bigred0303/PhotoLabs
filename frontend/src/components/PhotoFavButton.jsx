@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/PhotoFavButton.scss';
 
-const PhotoFavButton = ({ isInitiallyFavorited, onToggleFavorite }) => {
-  const [isFavorited, setIsFavorited] = useState(isInitiallyFavorited);
-
-  const handleClick = () => {
-    setIsFavorited(!isFavorited);
-    onToggleFavorite();
-  };
-
+const PhotoFavButton = ({ isFavorited, onToggleFavorite }) => {
   return (
-    <div className="photo-fav-button" onClick={handleClick}>
+    <div className="photo-fav-button" onClick={onToggleFavorite}>
       <span className="photo-fav-button__icon">{isFavorited ? '❤️' : '🤍'}</span>
     </div>
   );
 };
 
 PhotoFavButton.propTypes = {
-  isInitiallyFavorited: PropTypes.bool.isRequired,
+  isFavorited: PropTypes.bool.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
 };
 
