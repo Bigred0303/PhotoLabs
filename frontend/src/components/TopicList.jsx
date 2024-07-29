@@ -1,6 +1,7 @@
-import React from "react";
-
-import "../styles/TopicList.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import TopicListItem from './TopicListItem';
+import '../styles/TopicList.scss';
 
 const sampleDataForTopicList = [
   {
@@ -20,12 +21,22 @@ const sampleDataForTopicList = [
   },
 ];
 
-const TopicList = () => {
+const TopicList = ({ topics }) => {
   return (
     <div className="top-nav-bar__topic-list">
-      {/* Insert React */}
+      {topics.map(topic => (
+        <TopicListItem key={topic.id} topic={topic} />
+      ))}
     </div>
   );
+};
+
+TopicList.propTypes = {
+  topics: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default TopicList;

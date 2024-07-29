@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PhotoList from './components/PhotoList';
+import TopicList from './components/TopicList';
 import './App.scss';
 
 const initialPhotos = [
@@ -59,8 +60,28 @@ const initialPhotos = [
   },
 ];
 
+const initialTopics = [
+  {
+    id: "1",
+    slug: "nature",
+    label: "Nature",
+  },
+  {
+    id: "2",
+    slug: "city",
+    label: "City",
+  },
+  {
+    id: "3",
+    slug: "animals",
+    label: "Animals",
+  },
+];
+
+
 const App = () => {
   const [photos, setPhotos] = useState(initialPhotos);
+  const [topics, setTopics] = useState(initialTopics);
 
   const toggleFavorite = (id) => {
     setPhotos(photos.map(photo => 
@@ -70,6 +91,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <TopicList topics={topics} />
       <PhotoList photos={photos} onToggleFavorite={toggleFavorite} />
     </div>
   );
