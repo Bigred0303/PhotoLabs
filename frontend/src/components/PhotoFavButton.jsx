@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ isInitiallyFavorited, onToggleFavorite }) {
+const PhotoFavButton = ({ isInitiallyFavorited, onToggleFavorite }) => {
   const [isFavorited, setIsFavorited] = useState(isInitiallyFavorited);
 
   const handleClick = () => {
-    setIsFavorited(prevState => !prevState);
+    setIsFavorited(!isFavorited);
     onToggleFavorite();
   };
 
   return (
-    <div className="photo-list__fav-icon" onClick={handleClick}>
-      <div className="photo-list__fav-icon-svg">
-        <FavIcon filled={isFavorited} />
-      </div>
+    <div className="photo-fav-button" onClick={handleClick}>
+      <span className="photo-fav-button__icon">{isFavorited ? '❤️' : '🤍'}</span>
     </div>
   );
-}
+};
 
 PhotoFavButton.propTypes = {
   isInitiallyFavorited: PropTypes.bool.isRequired,

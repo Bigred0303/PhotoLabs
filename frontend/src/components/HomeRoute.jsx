@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TopNavigationBar from './TopNavigationBar';
 import PhotoList from './PhotoList';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
-  const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
+const HomeRoute = ({ topics, photos }) => {
+  const [photoList, setPhotoList] = useState(photos);
+
+  const toggleFavorite = (id) => {
+    setPhotoList(photoList.map(photo => 
+      photo.id === id ? { ...photo, isFavorited: !photo.isFavorited } : photo
+    ));
+  };
+
+  const totalLikedPhotos = photoList.filter(photo => photo.isFavorited).length;
 
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
-      <PhotoList photos={photos} onToggleFavorite={onToggleFavorite} />
+      <PhotoList photos={photoList} onToggleFavorite={toggleFavorite} />
     </div>
   );
 };
