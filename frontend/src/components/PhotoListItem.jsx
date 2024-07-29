@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PhotoListItem = ({ id, location, imageSource, username, profile }) => {
+const PhotoListItem = ({ photo }) => {
+  const { id, location, imageSource, username, profile } = photo;
   return (
     <div className="photo-list-item">
       <img src={profile} alt={`${username}'s profile`} className="profile-pic"/>
