@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
-const PhotoList = ({ photos, favoritePhotoIds, onToggleFavorite, onPhotoClick }) => {
+const PhotoList = ({ photos, setDisplayModal, onToggleFavorite }) => {
   return (
     <div className="photo-list">
       {photos.map(photo => (
         <PhotoListItem 
           key={photo.id} 
-          photo={photo} 
-          isFavorited={favoritePhotoIds.includes(photo.id)}
-          onToggleFavorite={onToggleFavorite} 
-          onPhotoClick={onPhotoClick}
+          photo={photo}
+          setDisplayModal={setDisplayModal}
+          onToggleFavorite={onToggleFavorite}
         />
       ))}
     </div>
@@ -36,10 +35,10 @@ PhotoList.propTypes = {
       name: PropTypes.string.isRequired,
       profile: PropTypes.string.isRequired,
     }).isRequired,
+    isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
-  favoritePhotoIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setDisplayModal: PropTypes.func.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
-  onPhotoClick: PropTypes.func.isRequired,
 };
 
 export default PhotoList;

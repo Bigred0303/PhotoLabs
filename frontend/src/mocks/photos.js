@@ -13,7 +13,8 @@ const photo1 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo2 = {
@@ -31,7 +32,8 @@ const photo2 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo3 = {
@@ -49,7 +51,8 @@ const photo3 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo4 = {
@@ -68,7 +71,8 @@ const photo4 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo5 = {
@@ -86,7 +90,8 @@ const photo5 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo6 =  {
@@ -104,7 +109,8 @@ const photo6 =  {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo7 = {
@@ -122,7 +128,8 @@ const photo7 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo8 = {
@@ -140,7 +147,8 @@ const photo8 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo9 = {
@@ -158,7 +166,8 @@ const photo9 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 const photo10 = {
@@ -176,7 +185,8 @@ const photo10 = {
     "username": "exampleuser",
     "name": "Joe Example",
     "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-  }
+  },
+  isFavorited: false
 }
 
 

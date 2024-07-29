@@ -2,64 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TopNavigationBar from './TopNavigationBar';
 import PhotoList from './PhotoList';
-import PhotoDetailsModal from '../routes/PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 
 class HomeRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      favoritePhotoIds: [],
-      selectedPhoto: null,
-    };
-
-    this.toggleFavorite = this.toggleFavorite.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  toggleFavorite(photoId) {
-    console.log("Toggling favorite for photoId:", photoId);
-    this.setState(prevState => {
-      const favoritePhotoIds = prevState.favoritePhotoIds.includes(photoId)
-        ? prevState.favoritePhotoIds.filter(id => id !== photoId)
-        : [...prevState.favoritePhotoIds, photoId];
-      return { favoritePhotoIds };
-    });
-  }
-
-  showModal(photo) {
-    console.log("Opening modal for photo:", photo);
-    this.setState({ selectedPhoto: photo });
-  }
-
-  closeModal() {
-    console.log("Closing modal");
-    this.setState({ selectedPhoto: null });
-  }
-
   render() {
-    const { topics, photos } = this.props;
-    const { favoritePhotoIds, selectedPhoto } = this.state;
-    const totalLikedPhotos = favoritePhotoIds.length;
-
-    console.log("Rendering HomeRoute component");
-    console.log("Selected Photo:", selectedPhoto);
-    console.log("Modal State:", selectedPhoto !== null);
+    const { topics, photos, setDisplayModal, onToggleFavorite } = this.props;
+    const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
 
     return (
       <div className="home-route">
         <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
         <PhotoList 
           photos={photos} 
-          favoritePhotoIds={favoritePhotoIds} 
-          onToggleFavorite={this.toggleFavorite} 
-          onPhotoClick={this.showModal}
-        />
-        <PhotoDetailsModal 
-          isOpen={selectedPhoto !== null} 
-          onClose={this.closeModal} 
-          photo={selectedPhoto}
+          setDisplayModal={setDisplayModal} 
+          onToggleFavorite={onToggleFavorite}
         />
       </div>
     );
@@ -88,7 +44,10 @@ HomeRoute.propTypes = {
       name: PropTypes.string.isRequired,
       profile: PropTypes.string.isRequired,
     }).isRequired,
+    isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
+  setDisplayModal: PropTypes.func.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 export default HomeRoute;

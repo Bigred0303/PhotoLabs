@@ -3,28 +3,25 @@ import PropTypes from 'prop-types';
 import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
-const PhotoListItem = ({ photo, isFavorited, onToggleFavorite, onPhotoClick }) => {
-  const { id, location, urls, user } = photo;
-  
-  const handleClick = () => {
-    console.log("Photo clicked:", photo); // Debugging log
-    onPhotoClick(photo);
-  };
-
+const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
   return (
-    <div className="photo-list__item" onClick={handleClick}>
-      <img src={urls.regular} alt={`Photo by ${user.username}`} className="photo-list__image"/>
+    <div className="photo-list__item">
+      <img 
+        src={photo.urls.regular} 
+        alt={`Photo by ${photo.user.username}`} 
+        className="photo-list__image"
+        onClick={() => setDisplayModal(photo)}
+      />
       <div className="photo-list__user-details">
-        <img src={user.profile} alt={`${user.username}'s profile`} className="photo-list__user-profile"/>
+        <img src={photo.user.profile} alt={`${photo.user.username}'s profile`} className="photo-list__user-profile"/>
         <div className="photo-list__user-info">
-          <div>{user.name}</div>
-          <div className="photo-list__user-location">{location.city}, {location.country}</div>
+          <div>{photo.user.name}</div>
+          <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
         </div>
       </div>
-      <PhotoFavButton 
-        isFavorited={isFavorited}
-        onToggleFavorite={() => onToggleFavorite(id)}
-      />
+      <button onClick={() => onToggleFavorite(photo.id)}>
+        {photo.isFavorited ? '★' : '☆'}
+      </button>
     </div>
   );
 };
@@ -46,10 +43,10 @@ PhotoListItem.propTypes = {
       name: PropTypes.string.isRequired,
       profile: PropTypes.string.isRequired,
     }).isRequired,
+    isFavorited: PropTypes.bool.isRequired,
   }).isRequired,
-  isFavorited: PropTypes.bool.isRequired,
+  setDisplayModal: PropTypes.func.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
-  onPhotoClick: PropTypes.func.isRequired,
 };
 
 export default PhotoListItem;
