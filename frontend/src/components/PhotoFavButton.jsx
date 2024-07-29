@@ -1,13 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton() {
-  const [isFavorited, setIsFavorited] = useState(false);
+function PhotoFavButton({ isInitiallyFavorited, onToggleFavorite }) {
+  const [isFavorited, setIsFavorited] = useState(isInitiallyFavorited);
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     setIsFavorited(prevState => !prevState);
-  }, []);
+    onToggleFavorite();
+  };
 
   return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
@@ -17,5 +19,10 @@ function PhotoFavButton() {
     </div>
   );
 }
+
+PhotoFavButton.propTypes = {
+  isInitiallyFavorited: PropTypes.bool.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
+};
 
 export default PhotoFavButton;

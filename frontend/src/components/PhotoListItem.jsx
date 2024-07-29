@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import 'styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
-const PhotoListItem = ({ photo }) => {
-  const { id, location, imageSource, username, profile } = photo;
+const PhotoListItem = ({ photo, onToggleFavorite }) => {
+  const { id, location, imageSource, username, profile, isFavorited } = photo;
+
   return (
     <div className="photo-list__item">
       <img src={imageSource} alt={`Photo by ${username}`} className="photo-list__image"/>
@@ -15,7 +16,10 @@ const PhotoListItem = ({ photo }) => {
           <div className="photo-list__user-location">{location.city}, {location.country}</div>
         </div>
       </div>
-      <PhotoFavButton />
+      <PhotoFavButton 
+        isInitiallyFavorited={isFavorited}
+        onToggleFavorite={() => onToggleFavorite(id)}
+      />
     </div>
   );
 };
@@ -30,7 +34,9 @@ PhotoListItem.propTypes = {
     imageSource: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
     profile: PropTypes.string.isRequired,
+    isFavorited: PropTypes.bool.isRequired,
   }).isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 export default PhotoListItem;
