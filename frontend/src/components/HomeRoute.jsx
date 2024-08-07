@@ -5,7 +5,7 @@ import PhotoList from './PhotoList';
 import PhotoDetailsModal from './PhotoDetailsModal'; // Ensure the correct import path
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
+const HomeRoute = ({ topics, photos, onToggleFavorite, onTopicClick }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const setDisplayModal = (photo) => {
@@ -24,7 +24,11 @@ const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
+      <TopNavigationBar 
+        topics={topics} 
+        totalLikedPhotos={totalLikedPhotos} 
+        onTopicClick={onTopicClick} // Pass the onTopicClick prop
+      />
       <PhotoList 
         photos={photos} 
         setDisplayModal={setDisplayModal} 
@@ -67,6 +71,7 @@ HomeRoute.propTypes = {
     isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
+  onTopicClick: PropTypes.func.isRequired, // Add the prop type for onTopicClick
 };
 
 export default HomeRoute;

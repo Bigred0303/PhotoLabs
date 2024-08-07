@@ -6,7 +6,8 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  SET_PHOTOS_BY_TOPIC: 'SET_PHOTOS_BY_TOPIC' // New action
 };
 
 function reducer(state, action) {
@@ -33,6 +34,8 @@ function reducer(state, action) {
       return { ...state, selectedPhoto: action.payload };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return { ...state, selectedPhoto: null };
+    case ACTIONS.SET_PHOTOS_BY_TOPIC:
+      return { ...state, photos: action.payload };
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -93,11 +96,22 @@ const useApplicationData = () => {
     }
   };
 
+  const fetchPhotosByTopic = async (topicId) => {
+    try {
+      const response = await fetch(`/api/topics/photos/${topicId}`);
+      const data = await response.json();
+      dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: data });
+    } catch (error) {
+      console.error('Error fetching photos by topic:', error);
+    }
+  };
+
   return {
     state,
     setPhotoSelected,
     onClosePhotoDetailsModal,
-    updateToFavPhotoIds
+    updateToFavPhotoIds,
+    fetchPhotosByTopic // Expose the function to handle topic clicks
   };
 };
 
