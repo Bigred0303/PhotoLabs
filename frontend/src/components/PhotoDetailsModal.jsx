@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/PhotoDetailsModal.scss';
 
 const PhotoDetailsModal = ({ isOpen, onClose, photo }) => {
-  console.log('PhotoDetailsModal isOpen:', isOpen);
+  console.log('PhotoDetailsModal rendering with isOpen:', isOpen);
   const modalClass = `photo-details-modal ${isOpen ? 'photo-details-modal--open' : ''}`;
   console.log('PhotoDetailsModal className:', modalClass);
 
