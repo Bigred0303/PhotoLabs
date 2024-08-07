@@ -23,6 +23,12 @@ const App = () => {
     setPhotos(photos.map(photo => 
       photo.id === photoId ? { ...photo, isFavorited: !photo.isFavorited } : photo
     ));
+    if (selectedPhoto && selectedPhoto.id === photoId) {
+      setSelectedPhoto(prevSelected => ({
+        ...prevSelected,
+        isFavorited: !prevSelected.isFavorited
+      }));
+    }
   };
 
   return (
@@ -33,11 +39,14 @@ const App = () => {
         setDisplayModal={setDisplayModal} 
         onToggleFavorite={toggleFavorite}
       />
-      <PhotoDetailsModal 
-        isOpen={selectedPhoto !== null} 
-        onClose={closeModal} 
-        photo={selectedPhoto} 
-      />
+      {selectedPhoto && (
+        <PhotoDetailsModal 
+          isOpen={selectedPhoto !== null} 
+          onClose={closeModal} 
+          photo={selectedPhoto} 
+          onToggleFavorite={toggleFavorite} // Pass the onToggleFavorite prop
+        />
+      )}
     </div>
   );
 };

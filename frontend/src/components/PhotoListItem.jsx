@@ -35,7 +35,7 @@ const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
           onToggleFavorite(photo.id);
         }}
       >
-        {photo.isFavorited ? '★' : '☆'}
+        {photo.isFavorited ? '❤️' : '🤍'}
       </button>
     </div>
   );

@@ -35,6 +35,7 @@ const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
           isOpen={!!selectedPhoto} 
           onClose={closeModal} 
           photo={selectedPhoto} 
+          onToggleFavorite={onToggleFavorite} // Pass the onToggleFavorite prop
         />
       )}
     </div>

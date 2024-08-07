@@ -14,7 +14,7 @@
 }
 
 .photo-details-modal--open {
-  display: block; /* Ensure this class overrides display: none */
+  display: block;
 }
 
 .photo-details-modal__overlay {
@@ -30,11 +30,11 @@
 .photo-details-modal__close-button {
   background-color: white;
   border: none;
-  color: black; /* Changed color to black for better visibility */
+  color: black;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 24px; /* Increased font size for visibility */
+  font-size: 24px;
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
@@ -45,9 +45,14 @@
   margin-top: 8px;
 }
 
+.photo-details-modal__image-wrapper {
+  position: relative; 
+}
+
 .photo-details-modal__image {
   max-width: 95%;
   border-radius: 8px;
+  position: relative; 
 }
 
 .photo-details-modal__top-bar {
@@ -98,16 +103,32 @@
 }
 
 .photo-details-modal__similar-photos-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px; /* Increase the gap for better spacing */
-  justify-content: center; /* Ensure proper spacing between photos */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  gap: 10px;
+  justify-content: center;
+}
+
+.photo-details-modal__similar-photo-wrapper {
+  position: relative;
 }
 
 .photo-details-modal__similar-photo {
-  width: 35%; /* Each photo takes up 45% of the modal's width */
+  width: 100%;
   height: auto;
   object-fit: cover;
-  border: 1px solid #d3d3d3; /* Thin grey border */
-  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+}
+
+.photo-details-modal__favorite-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  z-index: 10;
 }
