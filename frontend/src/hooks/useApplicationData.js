@@ -1,6 +1,4 @@
-import { useReducer } from 'react';
-import photosData from '../mocks/photos';
-import topics from '../mocks/topics';
+import { useReducer, useEffect } from 'react';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -44,12 +42,37 @@ function reducer(state, action) {
 
 const useApplicationData = () => {
   const initialState = {
-    photos: photosData,
-    topics: topics,
+    photos: [],
+    topics: [],
     selectedPhoto: null
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const response = await fetch('/api/photos');
+        const data = await response.json();
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+      } catch (error) {
+        console.error('Error fetching photos:', error);
+      }
+    };
+
+    const fetchTopics = async () => {
+      try {
+        const response = await fetch('/api/topics');
+        const data = await response.json();
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data });
+      } catch (error) {
+        console.error('Error fetching topics:', error);
+      }
+    };
+
+    fetchPhotos();
+    fetchTopics();
+  }, []);
 
   const setPhotoSelected = (photo) => {
     console.log("Opening modal for photo:", photo);
