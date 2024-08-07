@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
+// PhotoList component to display a list of photos
 const PhotoList = ({ photos, setDisplayModal, onToggleFavorite }) => {
 
   return (
+    // Container for the photo list
     <div className="photo-list">
       {photos.map(photo => (
+        // Render a PhotoListItem for each photo
         <PhotoListItem 
           key={photo.id} 
           photo={photo} 
@@ -20,6 +23,7 @@ const PhotoList = ({ photos, setDisplayModal, onToggleFavorite }) => {
 };
 
 PhotoList.propTypes = {
+  // Array of photo objects
   photos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     location: PropTypes.shape({
@@ -38,61 +42,10 @@ PhotoList.propTypes = {
     }).isRequired,
     isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
+  // Function to display the photo details modal
   setDisplayModal: PropTypes.func.isRequired,
+  // Function to toggle the favorite status of a photo
   onToggleFavorite: PropTypes.func.isRequired,
 };
 
 export default PhotoList;
-// const sampleDataForPhotoList = [
-//   {
-//     id: "1",
-//     location: {
-//       city: "Montreal",
-//       country: "Canada",
-//     },
-//     urls: {
-//       full: `${process.env.PUBLIC_URL}/Image-1-Full.jpeg`,
-//       regular: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-//     },
-//     user: {
-//       id: "1",
-//       username: "exampleuser",
-//       name: "Joe Example",
-//       profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-//     },
-//   },
-//   {
-//     id: "2",
-//     location: {
-//       city: "Toronto",
-//       country: "Canada",
-//     },
-//     urls: {
-//       full: `${process.env.PUBLIC_URL}/Image-2-Full.jpeg`,
-//       regular: `${process.env.PUBLIC_URL}/Image-2-Regular.jpeg`,
-//     },
-//     user: {
-//       id: "2",
-//       username: "exampleuser",
-//       name: "Joe Example",
-//       profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-//     },
-//   },
-//   {
-//     id: "3",
-//     location: {
-//       city: "Ottawa",
-//       country: "Canada",
-//     },
-//     urls: {
-//       full: `${process.env.PUBLIC_URL}/Image-3-Full.jpeg`,
-//       regular: `${process.env.PUBLIC_URL}/Image-3-Regular.jpeg`,
-//     },
-//     user: {
-//       id: "3",
-//       username: "exampleuser",
-//       name: "Joe Example",
-//       profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
-//     },
-//   },
-// ];

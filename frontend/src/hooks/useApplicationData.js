@@ -1,5 +1,6 @@
 import { useReducer, useEffect } from 'react';
 
+// Define action types
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
@@ -10,6 +11,7 @@ export const ACTIONS = {
   SET_PHOTOS_BY_TOPIC: 'SET_PHOTOS_BY_TOPIC' // New action
 };
 
+// Reducer function to handle state changes based on action types
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -43,15 +45,19 @@ function reducer(state, action) {
   }
 }
 
+// Custom hook to manage application state and actions
 const useApplicationData = () => {
+  // Initial state for the reducer
   const initialState = {
     photos: [],
     topics: [],
     selectedPhoto: null
   };
 
+  // useReducer hook to manage state based on the reducer function
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // useEffect to fetch initial data for photos and topics
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
@@ -77,14 +83,17 @@ const useApplicationData = () => {
     fetchTopics();
   }, []);
 
+  // Action to set the selected photo
   const setPhotoSelected = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   };
 
+  // Action to close the photo details modal
   const onClosePhotoDetailsModal = () => {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   };
 
+  // Action to update favorite photo status
   const updateToFavPhotoIds = (photoId) => {
     const photo = state.photos.find(photo => photo.id === photoId);
     if (photo.isFavorited) {
@@ -94,6 +103,7 @@ const useApplicationData = () => {
     }
   };
 
+  // Action to fetch photos by topic
   const fetchPhotosByTopic = async (topicId) => {
     try {
       const response = await fetch(`/api/topics/photos/${topicId}`);

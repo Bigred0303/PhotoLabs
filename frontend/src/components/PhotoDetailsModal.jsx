@@ -29,8 +29,10 @@ const PhotoDetailsModal = ({ isOpen, onClose, photo, onToggleFavorite }) => {
 
   return (
     <>
+      {/* Overlay to close the modal when clicked outside */}
       <div className="photo-details-modal__overlay" onClick={onClose}></div>
       <div className={modalClass}>
+        {/* Top bar with close button and photographer details */}
         <div className="photo-details-modal__top-bar">
           <button className="photo-details-modal__close-button" onClick={onClose}>&times;</button>
           <div className="photo-details-modal__photographer-details">
@@ -41,6 +43,7 @@ const PhotoDetailsModal = ({ isOpen, onClose, photo, onToggleFavorite }) => {
             </div>
           </div>
         </div>
+        {/* Main photo */}
         <div className="photo-details-modal__images">
           <div className="photo-details-modal__image-wrapper">
             <img src={photo.urls.full} alt={`Photo by ${photo.user.username}`} className="photo-details-modal__image" />
@@ -55,6 +58,7 @@ const PhotoDetailsModal = ({ isOpen, onClose, photo, onToggleFavorite }) => {
             </button>
           </div>
         </div>
+        {/* Similar photos section */}
         <div className="photo-details-modal__similar-photos">
           <h3>Similar Photos</h3>
           <div className="photo-details-modal__similar-photos-grid">
