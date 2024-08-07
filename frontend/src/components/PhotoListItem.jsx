@@ -10,11 +10,22 @@ const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
 
   return (
     <div className="photo-list__item" onClick={handleClick}>
-      <img 
-        src={photo.urls.regular} 
-        alt={`Photo by ${photo.user.username}`} 
-        className="photo-list__image"
-      />
+      <div className="photo-list__image-wrapper">
+        <img 
+          src={photo.urls.regular} 
+          alt={`Photo by ${photo.user.username}`} 
+          className="photo-list__image"
+        />
+        <button 
+          className="photo-list__favorite-button" 
+          onClick={(e) => {
+            e.stopPropagation(); // Prevents the modal from opening
+            onToggleFavorite(photo.id);
+          }}
+        >
+          {photo.isFavorited ? '❤️' : '🤍'}
+        </button>
+      </div>
       <div className="photo-list__user-details">
         <img 
           src={photo.user.profile} 
@@ -28,15 +39,6 @@ const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
           </div>
         </div>
       </div>
-      <button 
-        className="photo-list__favorite-button" 
-        onClick={(e) => {
-          e.stopPropagation(); // Prevents the modal from opening
-          onToggleFavorite(photo.id);
-        }}
-      >
-        {photo.isFavorited ? '❤️' : '🤍'}
-      </button>
     </div>
   );
 };

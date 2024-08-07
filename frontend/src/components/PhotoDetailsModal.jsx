@@ -57,7 +57,7 @@ const PhotoDetailsModal = ({ isOpen, onClose, photo, onToggleFavorite }) => {
         </div>
         <div className="photo-details-modal__similar-photos">
           <h3>Similar Photos</h3>
-          <div className="photo-details-modal__similar-photos-list">
+          <div className="photo-details-modal__similar-photos-grid">
             {similarPhotosArray.map((similarPhoto, index) => (
               <div className="photo-details-modal__similar-photo-wrapper" key={index}>
                 <img 
@@ -65,6 +65,14 @@ const PhotoDetailsModal = ({ isOpen, onClose, photo, onToggleFavorite }) => {
                   alt={`Similar photo ${index + 1}`}
                   className="photo-details-modal__similar-photo"
                 />
+                <div className="photo-details-modal__similar-photo-info">
+                  <img 
+                    src={similarPhoto.user.profile} 
+                    alt={`${similarPhoto.user.username}'s profile`} 
+                    className="photo-details-modal__similar-photo-profile"
+                  />
+                  <div>{similarPhoto.user.name}</div>
+                </div>
                 <button 
                   className="photo-details-modal__favorite-button" 
                   onClick={(e) => {
@@ -107,6 +115,12 @@ PhotoDetailsModal.propTypes = {
       PropTypes.shape({
         urls: PropTypes.shape({
           regular: PropTypes.string.isRequired,
+        }).isRequired,
+        user: PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          username: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          profile: PropTypes.string.isRequired,
         }).isRequired,
         isFavorited: PropTypes.bool.isRequired,
       })

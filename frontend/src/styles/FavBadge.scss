@@ -1,29 +1,34 @@
 .fav-badge {
   position: relative;
+  display: inline-block; /* Ensures the notification circle is positioned relative to the icon */
 }
 
-.fav-badge__count { 
-margin-right: 100px;
-background-color: rgb(252, 252, 252);
-width: 20px;
-height: 20px;
-  border-radius: 99px;
-  position: relative;
-  top: 0%;
-  right: 0%;
-  left: 70%;
-  bottom: 60%;
-
-  span {
-    text-align: center;
-    color: white;
-    width: 100%;
-    font-weight: 500;
-    position: absolute;
-    font-size: 20px;
-  }
+.fav-badge__count {
+  background-color: rgb(252, 252, 252);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px; /* Position above the icon */
+  right: -10px; /* Position to the right of the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: black; /* Ensure text is visible */
 }
 
 .fav-badge__icon {
   font-size: 24px;
+  position: relative; /* Ensure that the notification circle is positioned relative to the icon */
+}
+
+.fav-badge__notification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px; /* Size of the notification circle */
+  height: 12px; /* Size of the notification circle */
+  background-color: green; /* Notification circle color */
+  border-radius: 50%; /* Circular shape */
 }
