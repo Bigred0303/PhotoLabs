@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import '../styles/PhotoDetailsModal.scss';
 
 const PhotoDetailsModal = ({ isOpen, onClose, photo }) => {
-  console.log('PhotoDetailsModal rendering with isOpen:', isOpen);
+  console.log('PhotoDetailsModal rendering with isOpen:', isOpen, 'photo:', photo);
+  if (!isOpen || !photo) {
+    return null;
+  }
+
   const modalClass = `photo-details-modal ${isOpen ? 'photo-details-modal--open' : ''}`;
-  console.log('PhotoDetailsModal className:', modalClass);
 
   return (
     <>
-      {isOpen && <div className="photo-details-modal__overlay" onClick={onClose}></div>}
+      <div className="photo-details-modal__overlay" onClick={onClose}></div>
       <div className={modalClass}>
         <div className="photo-details-modal__top-bar">
           <button className="photo-details-modal__close-button" onClick={onClose}>&times;</button>
