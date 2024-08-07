@@ -92,3 +92,22 @@
   font-size: 12px;
   margin-left: 8px;
 }
+
+.photo-details-modal__similar-photos {
+  margin: 10px;
+}
+
+.photo-details-modal__similar-photos-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* Increase the gap for better spacing */
+  justify-content: center; /* Ensure proper spacing between photos */
+}
+
+.photo-details-modal__similar-photo {
+  width: 35%; /* Each photo takes up 45% of the modal's width */
+  height: auto;
+  object-fit: cover;
+  border: 1px solid #d3d3d3; /* Thin grey border */
+  border-radius: 8px; /* Rounded corners */
+}

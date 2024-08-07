@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import '../styles/PhotoDetailsModal.scss';
 
 const PhotoDetailsModal = ({ isOpen, onClose, photo }) => {
-  console.log('PhotoDetailsModal rendering with isOpen:', isOpen, 'photo:', photo);
   if (!isOpen || !photo) {
     return null;
   }
 
+  const similarPhotosArray = Object.values(photo.similar_photos);
+  
   const modalClass = `photo-details-modal ${isOpen ? 'photo-details-modal--open' : ''}`;
 
   return (
@@ -26,6 +27,19 @@ const PhotoDetailsModal = ({ isOpen, onClose, photo }) => {
         </div>
         <div className="photo-details-modal__images">
           <img src={photo.urls.full} alt={`Photo by ${photo.user.username}`} className="photo-details-modal__image" />
+        </div>
+        <div className="photo-details-modal__similar-photos">
+          <h3>Similar Photos</h3>
+          <div className="photo-details-modal__similar-photos-list">
+            {similarPhotosArray.map((similarPhoto, index) => (
+              <img 
+                key={index}
+                src={similarPhoto.urls.regular}
+                alt={`Similar photo ${index + 1}`}
+                className="photo-details-modal__similar-photo"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
@@ -51,6 +65,13 @@ PhotoDetailsModal.propTypes = {
       name: PropTypes.string.isRequired,
       profile: PropTypes.string.isRequired,
     }).isRequired,
+    similar_photos: PropTypes.objectOf(
+      PropTypes.shape({
+        urls: PropTypes.shape({
+          regular: PropTypes.string.isRequired,
+        }).isRequired,
+      })
+    ).isRequired,
   }).isRequired,
 };
 
