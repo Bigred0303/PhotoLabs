@@ -1,5 +1,5 @@
 # react-photolabs
-The PhotoLabs project for the Web Development React course programming.
+The PhotoLabs project for the Web Development React course programming. By Grant Brown
 
 # Photolabs
 
