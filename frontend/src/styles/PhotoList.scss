@@ -1,10 +1,13 @@
 .photo-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  gap: 16px; /* Space between grid items */
   list-style-type: none;
   margin: 0;
   padding: 0;
+  width: 100%; /* Full width container */
+  box-sizing: border-box; /* Include padding and border in width/height */
+  padding-top: 20px; /* Add padding to the top of the grid */
 }
 
 .photo-list:after {

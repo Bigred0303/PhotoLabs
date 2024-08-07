@@ -1,69 +1,63 @@
-.photo-list {
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
 .photo-list__item {
-  position: relative;
-  width: 100%; 
-  max-width: 600px; 
-  margin: 24px 0; 
-  padding: 8px;
+  max-width: 100%; /* Ensure items do not exceed their container */
   border-width: 0.5px;
   border-color: lightgray;
   border-style: solid;
   border-radius: 8px;
-  background-color: #f0f0f0; 
-  box-sizing: border-box; 
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+  overflow: hidden; /* Ensures content doesn't overflow the border */
+}
+
+.photo-list__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Set a fixed height for consistent image sizing */
 }
 
 .photo-list__image {
-  border-radius: 8px 8px 0px 0px;
-  width: 100%; 
-  height: auto; 
-  object-fit: cover;
-  display: block; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire container */
+  border-radius: 8px 8px 0 0;
 }
 
 .photo-list__favorite-button {
   position: absolute;
-  top: 12px; 
-  left: 12px; 
-  background-color: white; 
-  border-radius: 50%; 
-  border: 2px solid #ccc; 
-  padding: 8px; 
-  font-size: 24px; 
+  top: 12px;
+  left: 12px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  padding: 8px;
+  font-size: 24px;
   cursor: pointer;
-  color: black; 
-  z-index: 10; 
+  color: black;
+  z-index: 10;
 }
 
 .photo-list__user-details {
   display: flex;
   align-items: center;
   margin-top: 8px;
+  padding: 8px;
 }
 
 .photo-list__user-profile {
   object-fit: cover;
   border-radius: 100%;
   vertical-align: middle;
-  margin-right: 12px; 
-  width: 60px; 
-  height: 60px; 
+  margin-right: 12px;
+  width: 60px;
+  height: 60px;
 }
 
 .photo-list__user-info {
   font-weight: 700;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .photo-list__user-location {
   color: #838383;
-  font-size: 14px; 
+  font-size: 14px;
 }
