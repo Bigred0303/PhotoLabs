@@ -78,12 +78,10 @@ const useApplicationData = () => {
   }, []);
 
   const setPhotoSelected = (photo) => {
-    console.log("Opening modal for photo:", photo);
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   };
 
   const onClosePhotoDetailsModal = () => {
-    console.log("Closing modal");
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   };
 

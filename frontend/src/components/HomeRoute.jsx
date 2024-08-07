@@ -9,18 +9,14 @@ const HomeRoute = ({ topics, photos, onToggleFavorite, onTopicClick }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const setDisplayModal = (photo) => {
-    console.log("Opening modal for photo:", photo);
     setSelectedPhoto(photo);
   };
 
   const closeModal = () => {
-    console.log("Closing modal");
     setSelectedPhoto(null);
   };
 
   const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
-
-  console.log("selectedPhoto:", selectedPhoto);
 
   return (
     <div className="home-route">

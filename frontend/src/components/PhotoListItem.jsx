@@ -4,7 +4,6 @@ import '../styles/PhotoListItem.scss';
 
 const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
   const handleClick = () => {
-    console.log("PhotoListItem clicked, calling setDisplayModal");
     setDisplayModal(photo);
   };
 
