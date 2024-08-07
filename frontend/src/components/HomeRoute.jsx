@@ -5,15 +5,15 @@ import PhotoList from './PhotoList';
 import PhotoDetailsModal from '../routes/PhotoDetailsModal';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = ({ topics, photos, setDisplayModal, onToggleFavorite }) => {
+const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const handleSetDisplayModal = (photo) => {
+  const setDisplayModal = (photo) => {
     console.log("Opening modal for photo:", photo);
     setSelectedPhoto(photo);
   };
 
-  const handleCloseModal = () => {
+  const closeModal = () => {
     console.log("Closing modal");
     setSelectedPhoto(null);
   };
@@ -25,14 +25,16 @@ const HomeRoute = ({ topics, photos, setDisplayModal, onToggleFavorite }) => {
       <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
       <PhotoList 
         photos={photos} 
-        setDisplayModal={handleSetDisplayModal} 
+        setDisplayModal={setDisplayModal} 
         onToggleFavorite={onToggleFavorite}
       />
-      <PhotoDetailsModal 
-        isOpen={selectedPhoto !== null} 
-        onClose={handleCloseModal} 
-        photo={selectedPhoto} 
-      />
+      {selectedPhoto && (
+        <PhotoDetailsModal 
+          isOpen={selectedPhoto !== null} 
+          onClose={closeModal} 
+          photo={selectedPhoto} 
+        />
+      )}
     </div>
   );
 };
@@ -61,7 +63,6 @@ HomeRoute.propTypes = {
     }).isRequired,
     isFavorited: PropTypes.bool.isRequired,
   })).isRequired,
-  setDisplayModal: PropTypes.func.isRequired,
   onToggleFavorite: PropTypes.func.isRequired,
 };
 

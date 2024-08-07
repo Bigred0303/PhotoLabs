@@ -14,7 +14,7 @@
 }
 
 .photo-details-modal--open {
-  display: block; /* Display the modal when this class is added */
+  display: block; /* Ensure this class overrides display: none */
 }
 
 .photo-details-modal__overlay {

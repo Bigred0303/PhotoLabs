@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/PhotoListItem.scss';
-import PhotoFavButton from './PhotoFavButton';
 
 const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
   return (
@@ -13,13 +12,22 @@ const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
         onClick={() => setDisplayModal(photo)}
       />
       <div className="photo-list__user-details">
-        <img src={photo.user.profile} alt={`${photo.user.username}'s profile`} className="photo-list__user-profile"/>
+        <img 
+          src={photo.user.profile} 
+          alt={`${photo.user.username}'s profile`} 
+          className="photo-list__user-profile"
+        />
         <div className="photo-list__user-info">
           <div>{photo.user.name}</div>
-          <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
+          <div className="photo-list__user-location">
+            {photo.location.city}, {photo.location.country}
+          </div>
         </div>
       </div>
-      <button onClick={() => onToggleFavorite(photo.id)}>
+      <button 
+        className="photo-list__favorite-button" 
+        onClick={() => onToggleFavorite(photo.id)}
+      >
         {photo.isFavorited ? '★' : '☆'}
       </button>
     </div>
