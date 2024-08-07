@@ -22,3 +22,11 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+
+Screenshots:
+
+!["PhotoLabs Home Screen"](https://github.com/Bigred0303/PhotoLabs/blob/main/docs/homeScreenPL.png?raw=true)
+
+!["Home Screen with liked photos"](https://github.com/Bigred0303/PhotoLabs/blob/main/docs/likedPhotosPL.png?raw=true)
+
+!["Modal Screen"](https://github.com/Bigred0303/PhotoLabs/blob/main/docs/modalPL.png?raw=true)
