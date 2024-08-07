@@ -20,6 +20,8 @@ const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
 
   const totalLikedPhotos = photos.filter(photo => photo.isFavorited).length;
 
+  console.log("Passing setDisplayModal to PhotoList");
+
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} totalLikedPhotos={totalLikedPhotos} />
@@ -30,7 +32,7 @@ const HomeRoute = ({ topics, photos, onToggleFavorite }) => {
       />
       {selectedPhoto && (
         <PhotoDetailsModal 
-          isOpen={selectedPhoto !== null} 
+          isOpen={!!selectedPhoto} 
           onClose={closeModal} 
           photo={selectedPhoto} 
         />

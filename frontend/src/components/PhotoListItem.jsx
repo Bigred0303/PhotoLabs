@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import '../styles/PhotoListItem.scss';
 
 const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
+  const handleClick = () => {
+    console.log("PhotoListItem clicked, calling setDisplayModal");
+    setDisplayModal(photo);
+  };
+
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handleClick}>
       <img 
         src={photo.urls.regular} 
         alt={`Photo by ${photo.user.username}`} 
         className="photo-list__image"
-        onClick={() => setDisplayModal(photo)}
       />
       <div className="photo-list__user-details">
         <img 
@@ -26,7 +30,10 @@ const PhotoListItem = ({ photo, setDisplayModal, onToggleFavorite }) => {
       </div>
       <button 
         className="photo-list__favorite-button" 
-        onClick={() => onToggleFavorite(photo.id)}
+        onClick={(e) => {
+          e.stopPropagation(); // Prevents the modal from opening
+          onToggleFavorite(photo.id);
+        }}
       >
         {photo.isFavorited ? '★' : '☆'}
       </button>

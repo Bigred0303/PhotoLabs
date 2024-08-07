@@ -4,14 +4,16 @@ import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
 const PhotoList = ({ photos, setDisplayModal, onToggleFavorite }) => {
+  console.log("Received setDisplayModal in PhotoList:", setDisplayModal);
+
   return (
     <div className="photo-list">
       {photos.map(photo => (
         <PhotoListItem 
           key={photo.id} 
-          photo={photo}
-          setDisplayModal={setDisplayModal}
-          onToggleFavorite={onToggleFavorite}
+          photo={photo} 
+          setDisplayModal={setDisplayModal} 
+          onToggleFavorite={onToggleFavorite} 
         />
       ))}
     </div>
